@@ -14,19 +14,19 @@ function get() {
 
 function getById(id) {
     return db('chores')
-        .where({ id })
+        .where({ id: Number(id) })
         .first();
 }
 
 function insert(chores) {
     return db('chores')
-        .insert()
-        .insert(id => ({id : ids[0] }));
+        .insert(chores)
+        .insert(ids => ({id : ids[0] }));
 }
 
 function update(id, chores) {
     return db = ('chores')
-        .where({ id })
+        .where('id', Number(id))
         .update(chores);
 }
 

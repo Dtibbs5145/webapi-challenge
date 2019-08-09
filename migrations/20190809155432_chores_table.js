@@ -5,7 +5,6 @@ exports.up = function(knex) {
 
     chores
         .integer('chores_id')
-        .unsigned()
         .notNullable()
 
     chores
@@ -17,7 +16,7 @@ exports.up = function(knex) {
 
     chores
         .references('id')
-        .inTable('people')
+        .inTable('people');
 
     chores
         .boolean('completed')

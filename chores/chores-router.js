@@ -2,19 +2,20 @@ const express = require('express');
 const ChoresDB = require('./chores-model');
 const router = express.Router();
 
-// const people = [
-//     {
-//         id: 1,
-//         name: Joey
-//     },
-
-// ];
-
-// let chores = [
-
-// ];
-
-// let choreId = 1;
+const people = [
+    {
+        id: 1,
+        name: 'Joey'
+    },
+    {
+        id: 2,
+        name: 'Sue Ann'
+    },
+    {
+        id: 3,
+        name: 'Marcus'
+    },
+];
 
 router.get('/', async (req, res) => {
     try {
@@ -32,15 +33,15 @@ router.get('/:id', async (req, res) => {
         if (chores) {
             res.status(200).json(chores);
         } else {
-            res.status(404).json({ message: 'The chores for this person cannot be found' });
+            res.status(404).json({ message: 'The chores cannot be found' });
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'There was something that went wrong while trying to get the chores' });
+        res.status(500).json({ message: 'Something went wrong while trying to get the chores' });
     };
 });
 
-router.insert('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const chores = await ChoresDB.insert(req.body);
         if (chores) {
@@ -54,9 +55,9 @@ router.insert('/', async (req, res) => {
     }
 });
 
-router.update('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-        const chores = await ChoresDB.update(req.params.id);
+        const chores = await ChoresDB.update(req.body);
         if (chores) {
             res.status(200).json({ message: 'Chore was updated successfully' });
         } else {
