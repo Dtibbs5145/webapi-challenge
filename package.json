@@ -1,0 +1,31 @@
+{
+  "name": "webapi-challenge",
+  "version": "1.0.0",
+  "description": "In this challenge, create a web API to manage the following resources: `People` and `Chores`.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dtibbs5145/webapi-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dtibbs5145/webapi-challenge/issues"
+  },
+  "homepage": "https://github.com/Dtibbs5145/webapi-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.20.0",
+    "init": "^0.1.2",
+    "knex": "^0.19.1",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
