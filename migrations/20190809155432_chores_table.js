@@ -3,9 +3,9 @@ exports.up = function(knex) {
   return knex.schema.createTable('chores', function(chores) {
     chores.increments();
 
-    chores
-        .integer('chores_id')
-        .notNullable()
+    // chores
+    //     .integer('chores_id')
+    //     .notNullable()
 
     chores
         .string('notes', 150)
@@ -13,6 +13,10 @@ exports.up = function(knex) {
     chores
         .string('description', 260)
         .notNullable();
+
+    chores
+      .assignedTo(chores.id)
+      .notNullable();
 
     chores
         .boolean('completed')
