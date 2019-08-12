@@ -1,19 +1,22 @@
 const express = require('express');
-const ChoresDB = require('./chores-model');
+// const choreListDB = require('./chores-model');
 const router = express.Router();
 
 let choreList = [
     {
+        id: 1,
         name: 'Joey',
         description: 'Do dishes',
         completed: false
     },
     {
+        id: 2,
         name: 'Ryan',
         description: 'Finish homework',
         completed: false
     },
     {
+        id: 3,
         name: 'Miranda',
         description: 'Make dinner',
         completed: false
@@ -21,25 +24,15 @@ let choreList = [
 ];
 const nextId = 4;
 
-// // function logger(req, res, next) {
-//     console.log('Hello Chores');
-//     next();
-// }
-
-router.get('/', async (req, res) => {
-    try {
-        const chores = await ChoresDB.get();
-        res.status(200).json(choreList);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Something went wrong while trying to get chores.' });
-    }
+router.get('/', (req, res) => {
+    res.status(200).json(choreList);
 });
 
 router.get('/:id', async (req, res) => {
     try {
-        const chores = await ChoresDB.getById(req.params.id);
-        if (chores) {
+        const chores = await choreList.getById(req.params.id);
+        if (choreList) {
+            let choreList = choreList.find(chores => choreList.id === 'id');
             res.status(200).json(choreList.id);
         } else {
             res.status(404).json({ message: 'The chore cannot be found' });
@@ -52,10 +45,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const chores = await ChoresDB.insert(req.body);
+        const chores = await choreList.insert(req.body);
         choreList.id = nextId++;
-        if (chores.description) {
-            choreList.push(chores);
+        if (chores) {
+            choreList.push(choreList);
             res.status(201).json(choreList);
         } else {
             res.status(404).json({ message: 'Be sure to add required fields' });
@@ -68,7 +61,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const chores = await ChoresDB.update(req.body);
+        const chores = await choreList.update(req.body);
         if (chores) {
             res.status(200).json({ message: 'Chore was updated successfully' });
         } else {
@@ -82,7 +75,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const count = await ChoresDB.remove(req.params.id);
+        const count = await choreList.remove(req.params.id);
         if (count > 0) {
             res.status(200).json({ message: 'The chore was successfully deleted' });
         } else {
