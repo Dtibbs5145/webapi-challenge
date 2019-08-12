@@ -1,6 +1,6 @@
 1) Mention two parts of Express that you learned about this week.
 
-This week I learned more about logger and middleware.
+This week I learned more about middleware along with getting a better understanding of routes.
 
 2) What is Express Middleware?
 
@@ -8,7 +8,7 @@ Express Middleware is like an extension of express. Middleware is also most of w
 
 3) How can a client send data to an API?
 
-
+By using a request handler function. Using query strings are another way to pass information.
 
 4) What can the API return to help clients know if a request was successful?
 

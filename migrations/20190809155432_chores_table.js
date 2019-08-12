@@ -15,10 +15,6 @@ exports.up = function(knex) {
         .notNullable();
 
     chores
-        .references('id')
-        .inTable('people');
-
-    chores
         .boolean('completed')
         .defaultTo(false);
   });
